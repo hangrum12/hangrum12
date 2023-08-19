@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>video sharing </title>
+</head>
+<body>
+  <h1>video sharing site </h1>
+  
+  <input type="file" id="videoInput" accept="video/*">
+  <br><br>
+  
+  <label for="videoTitle">title :</label>
+  <input type="text" id="videoTitle">
+  <br><br>
+  
+  <label for="videoDescription">video description :</label>
+  <textarea id="videoDescription" rows="4"></textarea>
+  <br><br>
+  
+  <button onclick="uploadVideo()">video upload </button>
+  
+  <hr>
+  
+  <h2>visual dream </h2>
+  <div id="videoList"></div>
+  
+  <script>
+    function uploadVideo() {
+      const videoInput = document.getElementById('videoInput');
+      const videoTitle = document.getElementById('videoTitle').value;
+      const videoDescription = document.getElementById('videoDescription').value;
+      
+      if (videoInput.files.length > 0) {
+        const videoFile = videoInput.files[0];
+        
+        const videoList = document.getElementById('videoList');
+        const videoElement = document.createElement('video');
+        videoElement.src = URL.createObjectURL(videoFile);
+        videoElement.controls = true;
+        
+        const videoInfo = document.createElement('div');
+        videoInfo.innerHTML = `<strong>${videoTitle}</strong><br>${videoDescription}`;
+        
+        videoList.appendChild(videoElement);
+        videoList.appendChild(videoInfo);
+      }
+    }
+  </script>
+</body>
+</html>
